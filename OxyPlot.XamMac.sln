@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxyPlot.XamMac", "OxyPlot.XamMac\OxyPlot.XamMac.csproj", "{D00341E4-3984-4771-9F23-CB21F0381AFC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OxyPlot.XamMac", "OxyPlot.XamMac.csproj", "{D00341E4-3984-4771-9F23-CB21F0381AFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

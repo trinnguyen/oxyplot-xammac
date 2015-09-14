@@ -48,7 +48,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="XamMac" />
     <Reference Include="OxyPlot">
-      <HintPath>..\packages\OxyPlot.Core.2014.1.546\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
+      <HintPath>packages\OxyPlot.Core.2014.1.546\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -56,12 +56,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="PlotView.cs" />
     <Compile Include="CoreGraphicsRenderContext.cs" />
     <Compile Include="ConverterExtensions.cs" />
     <Compile Include="ExportExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
