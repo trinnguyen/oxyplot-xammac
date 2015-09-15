@@ -1,2 +1,2 @@
-# OxyPlot-Xamarin.Mac-ClassicAPI
-Add support Xamarin.Mac Classic API to OxyPlot
+# OxyPlot for Xamarin.Mac
+Add support Xamarin.Mac Classic API for OxyPlot.
