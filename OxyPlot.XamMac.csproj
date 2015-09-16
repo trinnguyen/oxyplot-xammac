@@ -48,8 +48,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Xamarin.Mac" />
-    <Reference Include="OxyPlot, Version=2015.1.1024.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9">
-      <HintPath>..\..\VSO\avn-supports\AFOSX-XS\packages\OxyPlot.Core.2015.1.1024-alpha\lib\net45\OxyPlot.dll</HintPath>
+    <Reference Include="OxyPlot">
+      <HintPath>..\..\VSO\avn-supports\AFOSX-XS\packages\OxyPlot.Core.2014.1.546\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
