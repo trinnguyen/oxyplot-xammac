@@ -48,7 +48,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="XamMac" />
     <Reference Include="OxyPlot">
-      <HintPath>packages\OxyPlot.Core.2014.1.546\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
+      <HintPath>..\..\VSO\avn-supports\AFOSX-XS\packages\OxyPlot.Core.2014.1.546\lib\portable-net4+sl4+wp71+win8\OxyPlot.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
