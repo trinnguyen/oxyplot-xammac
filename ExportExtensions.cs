@@ -1,8 +1,8 @@
-﻿using System;
-using MonoMac.AppKit;
-using System.Drawing;
+using System;
+using AppKit;
+using CoreGraphics;
 
-namespace OxyPlot.XamMac
+namespace OxyPlot.Xamarin.Mac
 {
 	/// <summary>
 	///	Export extensions for Images and PDF Documents
@@ -16,7 +16,7 @@ namespace OxyPlot.XamMac
 		/// <param name="view">View.</param>
 		public static NSImage GenerateImage(this NSView view)
 		{
-			RectangleF bounds = view.Bounds;
+			CGRect bounds = view.Bounds;
 
 			NSBitmapImageRep bir = view.BitmapImageRepForCachingDisplayInRect (bounds);
 			bir.Size = bounds.Size;

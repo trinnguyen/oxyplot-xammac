@@ -1,9 +1,9 @@
 ﻿using System;
-using MonoMac.AppKit;
-using System.Drawing;
-using MonoMac.Foundation;
+using AppKit;
+using CoreGraphics;
+using Foundation;
 
-namespace OxyPlot.XamMac
+namespace OxyPlot.Xamarin.Mac
 {
 	/// <summary>
 	/// Provides a view that can show a <see cref="PlotModel" />. 
@@ -33,7 +33,7 @@ namespace OxyPlot.XamMac
 		/// Initializes a new instance of the <see cref="OxyPlot.Xamarin.Mac.PlotView"/> class.
 		/// </summary>
 		/// <param name="frame">The initial frame.</param>
-		public PlotView(RectangleF frame) : base(frame)
+		public PlotView(CGRect frame) : base(frame)
 		{
 			this.Initialize ();
 		}
@@ -276,7 +276,7 @@ namespace OxyPlot.XamMac
 		/// Draws the content of the view.
 		/// </summary>
 		/// <param name="dirtyRect">The rectangle to draw.</param>
-		public override void DrawRect(RectangleF dirtyRect)
+		public override void DrawRect(CGRect dirtyRect)
 		{
 			if (this.model != null)
 			{

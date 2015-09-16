@@ -1,9 +1,8 @@
-﻿using System;
-using System.Drawing;
-using MonoMac.CoreGraphics;
-using MonoMac.AppKit;
+using System;
+using CoreGraphics;
+using AppKit;
 
-namespace OxyPlot.XamMac
+namespace OxyPlot.Xamarin.Mac
 {
 	/// <summary>
 	/// Provides extension methods that converts between Xamarin.Mac and OxyPlot types.
@@ -15,7 +14,7 @@ namespace OxyPlot.XamMac
 		/// </summary>
 		/// <returns>The screen point.</returns>
 		/// <param name="p">P.</param>
-		public static ScreenPoint ToScreenPoint (this PointF p)
+		public static ScreenPoint ToScreenPoint (this CGPoint p)
 		{
 			return new ScreenPoint (p.X, p.Y);
 		}
@@ -24,7 +23,7 @@ namespace OxyPlot.XamMac
 		/// </summary>
 		/// <param name="p">The point to convert.</param>
 		/// <returns>The converted point.</returns>
-		public static ScreenPoint LocationToScreenPoint (this PointF p, RectangleF bounds)
+		public static ScreenPoint LocationToScreenPoint (this CGPoint p, CGRect bounds)
 		{
 			return new ScreenPoint (p.X, bounds.Height - p.Y);
 		}
@@ -61,18 +60,18 @@ namespace OxyPlot.XamMac
 		/// </summary>
 		/// <param name="p">The point to convert.</param>
 		/// <returns>The converted point.</returns>
-		public static PointF Convert (this ScreenPoint p)
+		public static CGPoint Convert (this ScreenPoint p)
 		{
-			return new PointF ((float)p.X, (float)p.Y);
+			return new CGPoint ((float)p.X, (float)p.Y);
 		}
 		/// <summary>
 		/// Converts a <see cref="ScreenPoint" /> to a pixel center aligned <see cref="CGPoint" />.
 		/// </summary>
 		/// <param name="p">The point to convert.</param>
 		/// <returns>The converted point.</returns>
-		public static PointF ConvertAliased (this ScreenPoint p)
+		public static CGPoint ConvertAliased (this ScreenPoint p)
 		{
-			return new PointF (0.5f + (float)Math.Round (p.X), 0.5f + (float)Math.Round (p.Y));
+			return new CGPoint (0.5f + (float)Math.Round (p.X), 0.5f + (float)Math.Round (p.Y));
 		}
 
 		/// <summary>
@@ -80,22 +79,22 @@ namespace OxyPlot.XamMac
 		/// </summary>
 		/// <param name="rect">The rectangle to convert.</param>
 		/// <returns>The converted rectangle.</returns>
-		public static RectangleF ConvertAliased (this OxyRect rect)
+		public static CGRect ConvertAliased (this OxyRect rect)
 		{
 			float x = 0.5f + (float)Math.Round (rect.Left);
 			float y = 0.5f + (float)Math.Round (rect.Top);
 			float w = 0.5f + (float)Math.Round (rect.Right) - x;
 			float h = 0.5f + (float)Math.Round (rect.Bottom) - y;
-			return new RectangleF (x, y, w, h);
+			return new CGRect (x, y, w, h);
 		}
 		/// <summary>
 		/// Converts a <see cref="OxyRect" /> to a <see cref="CGRect" />.
 		/// </summary>
 		/// <param name="rect">The rectangle to convert.</param>
 		/// <returns>The converted rectangle.</returns>
-		public static RectangleF Convert (this OxyRect rect)
+		public static CGRect Convert (this OxyRect rect)
 		{
-			return new RectangleF ((float)rect.Left, (float)rect.Top, (float)(rect.Right - rect.Left), (float)(rect.Bottom - rect.Top));
+			return new CGRect ((float)rect.Left, (float)rect.Top, (float)(rect.Right - rect.Left), (float)(rect.Bottom - rect.Top));
 		}
 
 		public static OxyMouseButton ToButton (this NSEventType theType)
@@ -127,7 +126,7 @@ namespace OxyPlot.XamMac
 
 			return keys;
 		}
-		public static OxyMouseDownEventArgs ToMouseDownEventArgs (this NSEvent theEvent, RectangleF bounds)
+		public static OxyMouseDownEventArgs ToMouseDownEventArgs (this NSEvent theEvent, CGRect bounds)
 		{
 			// https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ApplicationKit/Classes/NSEvent_Class/Reference/Reference.html
 			return new OxyMouseDownEventArgs {
@@ -138,7 +137,7 @@ namespace OxyPlot.XamMac
 			};
 		}
 
-		public static OxyMouseEventArgs ToMouseEventArgs (this NSEvent theEvent, RectangleF bounds)
+		public static OxyMouseEventArgs ToMouseEventArgs (this NSEvent theEvent, CGRect bounds)
 		{
 			return new OxyMouseEventArgs {
 				Position = theEvent.LocationInWindow.LocationToScreenPoint (bounds),
@@ -146,7 +145,7 @@ namespace OxyPlot.XamMac
 			};
 		}
 
-		public static OxyMouseWheelEventArgs ToMouseWheelEventArgs (this NSEvent theEvent, RectangleF bounds)
+		public static OxyMouseWheelEventArgs ToMouseWheelEventArgs (this NSEvent theEvent, CGRect bounds)
 		{
 			return new OxyMouseWheelEventArgs {
 				Delta = (int)theEvent.ScrollingDeltaY,

@@ -1,13 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using MonoMac.CoreText;
-using MonoMac.AppKit;
-using MonoMac.CoreGraphics;
-using System.Drawing;
+using CoreText;
+using AppKit;
+using CoreGraphics;
 using System.Linq;
-using MonoMac.Foundation;
+using Foundation;
 
-namespace OxyPlot.XamMac
+namespace OxyPlot.Xamarin.Mac
 {
 	/// <summary>
 	/// Core graphics render context.
@@ -115,7 +114,7 @@ namespace OxyPlot.XamMac
 			this.gctx.TranslateCTM ((float)x, -(float)(y + destHeight));
 			this.gctx.SetAlpha ((float)opacity);
 			this.gctx.InterpolationQuality = interpolate ? CGInterpolationQuality.High : CGInterpolationQuality.None;
-			var destRect = new RectangleF (0f, 0f, (float)destWidth, (float)destHeight);
+			var destRect = new CGRect (0f, 0f, (float)destWidth, (float)destHeight);
 			this.gctx.DrawImage (destRect, image.CGImage);
 			this.gctx.RestoreState ();
 		}
@@ -280,12 +279,12 @@ namespace OxyPlot.XamMac
 				Font = font
 			})) {
 				using (var textLine = new CTLine (attributedString)) {
-					float width;
-					float height;
+					nfloat width;
+					nfloat height;
 
-					this.gctx.TextPosition = new PointF (0, 0);
+					this.gctx.TextPosition = new CGPoint (0, 0);
 
-					float lineHeight, delta;
+					nfloat lineHeight, delta;
 					this.GetFontMetrics (font, out lineHeight, out delta);
 
 					var bounds = textLine.GetImageBounds (this.gctx);
@@ -326,7 +325,7 @@ namespace OxyPlot.XamMac
 					this.gctx.ScaleCTM (1f, -1f);
 
 					if (maxSize.HasValue) {
-						var clipRect = new RectangleF (-x0, y0, (float)Math.Ceiling (width), (float)Math.Ceiling (height));
+						var clipRect = new CGRect (-x0, y0, (float)Math.Ceiling (width), (float)Math.Ceiling (height));
 						this.gctx.ClipToRect (clipRect);
 					}
 
@@ -360,11 +359,11 @@ namespace OxyPlot.XamMac
 				Font = font
 			})) {
 				using (var textLine = new CTLine (attributedString)) {
-					float lineHeight, delta;
+					nfloat lineHeight, delta;
 					this.GetFontMetrics (font, out lineHeight, out delta);
 
 					// the text position must be set to get the correct bounds
-					this.gctx.TextPosition = new PointF (0, 0);
+					this.gctx.TextPosition = new CGPoint (0, 0);
 
 					var bounds = textLine.GetImageBounds (this.gctx);
 					var width = bounds.Left + bounds.Width;
@@ -436,7 +435,7 @@ namespace OxyPlot.XamMac
 		/// <param name="font">The font.</param>
 		/// <param name="defaultLineHeight">Default line height.</param>
 		/// <param name="delta">The vertical delta.</param>
-		private void GetFontMetrics (CTFont font, out float defaultLineHeight, out float delta)
+		private void GetFontMetrics (CTFont font, out nfloat defaultLineHeight, out nfloat delta)
 		{
 			var ascent = font.AscentMetric;
 			var descent = font.DescentMetric;
@@ -445,7 +444,7 @@ namespace OxyPlot.XamMac
 			//// http://stackoverflow.com/questions/5511830/how-does-line-spacing-work-in-core-text-and-why-is-it-different-from-nslayoutm
 
 			leading = leading < 0 ? 0 : (float)Math.Floor (leading + 0.5f);
-			var lineHeight = (float)Math.Floor (ascent + 0.5f) + (float)Math.Floor (descent + 0.5) + leading;
+			var lineHeight = NMath.Floor (ascent + 0.5f) + NMath.Floor (descent + 0.5f) + leading;
 			var ascenderDelta = leading >= 0 ? 0 : (float)Math.Floor ((0.2 * lineHeight) + 0.5);
 			defaultLineHeight = lineHeight + ascenderDelta;
 			delta = ascenderDelta - descent;
@@ -499,7 +498,7 @@ namespace OxyPlot.XamMac
 			this.gctx.SetLineWidth ((float)thickness);
 			this.gctx.SetLineJoin (lineJoin.Convert ());
 			if (dashArray != null) {
-				var lengths = dashArray.Select (d => (float)d).ToArray ();
+				var lengths = dashArray.Select (d => (nfloat)d).ToArray ();
 				this.gctx.SetLineDash (0f, lengths);
 			} else {
 				this.gctx.SetLineDash (0, null);
