@@ -10,7 +10,6 @@
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
     <AssemblyName>OxyPlot.XamMac</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <UseXamMacFullFramework>True</UseXamMacFullFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
